@@ -1,1 +1,142 @@
+# Conexão entre Python e MySQL
+
+## Bibliotecas necessárias
+
+Antes de executar os scripts, é necessário instalar as bibliotecas utilizadas no projeto.
+
+Arquivo `requirements.txt`:
+
+```text
+mysql-connector-python
+faker
+```
+
+Para instalar as dependências, execute o comando abaixo no terminal:
+
+```bash
+pip install -r requirements.txt
+```
+
+
+---
+
+## Como funciona a conexão entre Python e MySQL
+
+Primeiro, importamos a biblioteca responsável pela comunicação entre o Python e o banco de dados MySQL:
+
+```python
+import mysql.connector
+```
+
+Em seguida, criamos a conexão:
+
+```python
+conexao = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="SUA_SENHA",
+    database="sales"
+)
+```
+
+### Explicação dos parâmetros
+
+* `host`: endereço do servidor do banco de dados. Como o MySQL está instalado no próprio computador, usamos `localhost`.
+* `user`: usuário do banco de dados. Neste projeto, utilizamos o usuário `root`.
+* `password`: senha do usuário do MySQL.
+* `database`: nome do banco de dados que será utilizado.
+
+---
+
+## Criando um cursor
+
+Após estabelecer a conexão, é necessário criar um cursor:
+
+```python
+cursor = conexao.cursor()
+```
+
+O cursor é o objeto responsável por executar comandos SQL no banco de dados.
+
+---
+
+## Inserindo dados
+
+Exemplo:
+
+```python
+sql = """
+INSERT INTO customers (name, gender, city)
+VALUES (%s, %s, %s)
+"""
+
+cursor.execute(
+    sql,
+    ("Ana", "Feminino", "Porto")
+)
+```
+
+O método `execute()` envia o comando SQL para o MySQL.
+
+Os símbolos `%s` funcionam como espaços reservados para os valores.
+
+---
+
+## Salvando as alterações
+
+Depois de inserir ou atualizar dados, é necessário confirmar as alterações:
+
+```python
+conexao.commit()
+```
+
+Sem esse comando, as modificações podem não ser salvas no banco de dados.
+
+---
+
+## Consultando dados
+
+Para buscar informações:
+
+```python
+cursor.execute(
+    "SELECT * FROM customers"
+)
+
+for linha in resultado:
+    print(linha)
+```
+---
+
+## Encerrando a conexão
+
+Ao final do programa, é importante fechar o cursor e a conexão:
+
+```python
+cursor.close()
+conexao.close()
+```
+
+Isso libera os recursos utilizados pelo programa.
+
+---
+
+## Fluxo completo da comunicação
+
+O processo de comunicação entre Python e MySQL acontece da seguinte forma:
+
+1. O Python solicita uma conexão com o MySQL.
+2. O MySQL verifica o usuário e a senha.
+3. O Python cria um cursor.
+4. O cursor envia comandos SQL.
+5. O MySQL executa os comandos.
+6. O banco retorna os resultados.
+7. O Python processa as informações.
+8. A conexão é encerrada.
+
+Fluxo simplificado:
+
+```text
+Python → mysql.connector → MySQL → Banco de dados
+```
 
