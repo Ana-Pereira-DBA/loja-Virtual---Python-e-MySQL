@@ -1,23 +1,33 @@
-# Loja Virtual - Python e MySQL
+# Loja Virtual — Integração Python e MySQL
 
-Projeto desenvolvido para praticar conceitos de banco de dados e automação com Python.
+## Sobre o projeto
+
+Projeto de estudo desenvolvido para praticar a integração entre Python e MySQL, com criação de tabelas e inserção automatizada de dados fictícios em um banco de dados.
 
 ## Funcionalidades
 
-- Criação automática de clientes
-- Geração de produtos fictícios
-- Inserção de dados no MySQL
-- Uso de Python para automação
-- Modelagem básica de banco de dados
+- Criação das tabelas `customers` e `products`.
+- Geração de dados fictícios utilizando a biblioteca `random`.
+- Inserção automatizada de 10 clientes e 10 produtos.
+- Conexão com o MySQL por meio da biblioteca `mysql-connector-python`.
+- Execução de comandos SQL parametrizados.
+- Confirmação das operações de inserção com `commit()`.
 
 ## Tecnologias utilizadas
 
 - Python
 - MySQL
 - mysql-connector-python
+- SQL
 
-## Como executar
+## Estrutura do projeto
 
-1. Crie o banco de dados usando os arquivos SQL;
-2. Instale as dependências;
-3. Execute os scripts Python;
+- `python/`: scripts de geração e inserção de clientes e produtos.
+- `sql/`: scripts SQL para criação do banco e das tabelas.
+- `requirements.txt`: dependências do projeto.
+
+## Aprendizados
+
+Este projeto permitiu praticar a comunicação entre Python e MySQL, a manipulação de dados, a execução de comandos SQL por meio de um cursor e o gerenciamento básico de operações no banco de dados.
+
+**Status:** projeto de estudo desenvolvido. A execução atual não foi revalidada.
